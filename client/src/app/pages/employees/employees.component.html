@@ -1,5 +1,20 @@
 <p>Employees component content goes here..</p>
-<button type="button" (click)="onHelloClick()">Click</button>
+<button ibmButton type="button" (click)="onHelloClick()">Click</button>
 <div *ngIf="data">
     {{data}}
 </div>
+<hr>
+<ibm-label [helperText]="'Not disabled'">
+    <input ibmText>
+</ibm-label>
+<ibm-label [helperText]="'Disabled'">
+    <input ibmText [disabled]="true">
+</ibm-label>
+<hr>
+<ibm-table-container>
+    <ibm-table-header>
+        <h3 ibmTableHeaderTitle>A</h3>
+    </ibm-table-header>
+    <ibm-table [model]="model" [showSelectionColumn]="false" ></ibm-table>
+</ibm-table-container>
+<hr>

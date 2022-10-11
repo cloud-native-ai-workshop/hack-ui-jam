@@ -16,9 +16,8 @@ import { DocsComponent } from './pages/docs/docs.component';
 import { SupportComponent } from './pages/support/support.component';
 import { Link1Component } from './pages/link1/link1.component';
 import { EmployeesComponent } from './pages/employees/employees.component';
-import { HelloService } from './services/hello.service';
 import { HttpClientModule } from '@angular/common/http';
-// import { HelloService } from './services/hello.service';
+import { ButtonModule, TableModule, InputModule } from 'carbon-components-angular';
 
 @NgModule({
 	declarations: [
@@ -37,7 +36,10 @@ import { HttpClientModule } from '@angular/common/http';
 		AppRoutingModule,
 		UIShellModule,
 		IconModule,
-		HttpClientModule
+		HttpClientModule,
+		ButtonModule,
+		TableModule,
+		InputModule,
 	],
 	bootstrap: [AppComponent]
 })
