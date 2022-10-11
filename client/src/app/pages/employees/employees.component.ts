@@ -18,8 +18,8 @@ export class EmployeesComponent implements OnInit {
     }
 
     onHelloClick() {
-        this.helloService.getHello().subscribe((m) => {
-            this.data = m
+        this.helloService.getHello().subscribe((m: {message:string}) => {
+            this.data = m.message
         })
         // console.log('onHelloClick()')
     }

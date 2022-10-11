@@ -42,6 +42,6 @@ vcsInfo:
 
 partOf: ""
 
-connectsTo: ""
+connectsTo: hack-bff-jam
 
 runtime: js

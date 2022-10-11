@@ -5,3 +5,5 @@
 tasks:
   - init: cd client && npm install && npm run build && cd .. && npm install
     command: npm run start
+    env:
+      API_HOST: "https://3001-cloudnativea-hackbffjam-1mw2pl24e0g.ws-eu70.gitpod.io"

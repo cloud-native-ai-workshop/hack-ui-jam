@@ -17,6 +17,8 @@ import { SupportComponent } from './pages/support/support.component';
 import { Link1Component } from './pages/link1/link1.component';
 import { EmployeesComponent } from './pages/employees/employees.component';
 import { HelloService } from './services/hello.service';
+import { HttpClientModule } from '@angular/common/http';
+// import { HelloService } from './services/hello.service';
 
 @NgModule({
 	declarations: [
@@ -34,10 +36,8 @@ import { HelloService } from './services/hello.service';
 		FormsModule,
 		AppRoutingModule,
 		UIShellModule,
-		IconModule
-	],
-	providers: [
-		HelloService
+		IconModule,
+		HttpClientModule
 	],
 	bootstrap: [AppComponent]
 })
