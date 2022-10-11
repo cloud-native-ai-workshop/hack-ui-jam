@@ -15,6 +15,8 @@ import { CatalogComponent } from './pages/catalog/catalog.component';
 import { DocsComponent } from './pages/docs/docs.component';
 import { SupportComponent } from './pages/support/support.component';
 import { Link1Component } from './pages/link1/link1.component';
+import { EmployeesComponent } from './pages/employees/employees.component';
+import { HelloService } from './services/hello.service';
 
 @NgModule({
 	declarations: [
@@ -23,7 +25,8 @@ import { Link1Component } from './pages/link1/link1.component';
 		CatalogComponent,
 		DocsComponent,
 		SupportComponent,
-		Link1Component
+		Link1Component,
+		EmployeesComponent
 	],
 	imports: [
 		BrowserModule,
@@ -32,6 +35,9 @@ import { Link1Component } from './pages/link1/link1.component';
 		AppRoutingModule,
 		UIShellModule,
 		IconModule
+	],
+	providers: [
+		HelloService
 	],
 	bootstrap: [AppComponent]
 })
