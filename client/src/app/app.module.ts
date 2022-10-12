@@ -17,7 +17,16 @@ import { SupportComponent } from './pages/support/support.component';
 import { Link1Component } from './pages/link1/link1.component';
 import { EmployeesComponent } from './pages/employees/employees.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ButtonModule, TableModule, InputModule } from 'carbon-components-angular';
+import { 
+	ButtonModule,
+	TableModule,
+	InputModule,
+	SelectModule,
+	GridModule,
+	PaginationModule,
+	ListModule
+ } from 'carbon-components-angular';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
 	declarations: [
@@ -40,6 +49,11 @@ import { ButtonModule, TableModule, InputModule } from 'carbon-components-angula
 		ButtonModule,
 		TableModule,
 		InputModule,
+		ReactiveFormsModule,
+		SelectModule,
+		GridModule,
+		PaginationModule,
+		ListModule,
 	],
 	bootstrap: [AppComponent]
 })

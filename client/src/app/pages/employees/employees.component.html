@@ -1,20 +1,39 @@
-<p>Employees component content goes here..</p>
-<button ibmButton type="button" (click)="onHelloClick()">Click</button>
-<div *ngIf="data">
-    {{data}}
+<div class="starter-home" imbGrid>
+    <h1 class="title">Burnout predictor</h1>
+    <p class="subtitle">Predict which of your employees are at risk of burnout</p>
+    <div ibmRow class="body-text">
+        <div ibmCol>
+            <p>
+                Burnout is a state of physical and emotional exhaustion.
+                It can occur when you experience long-term stress in your job, 
+                or when you have worked in a physically or emotionally draining 
+                role for a long time.
+            </p>
+            <p>
+                These are common signs of burnout:
+            </p>
+            <div ibmCol [columnNumbers]="{'lg': 6, 'md': 12, 'sm': 12}">
+                <ul ibmList class="list">
+                    <li ibmListItem>Feeling tired or drained most of the time</li>
+                    <li ibmListItem>Feeling helpless, trapped and/or defeated</li>
+                    <li ibmListItem>Feeling detached/alone in the world</li>
+                    <li ibmListItem>Having a cynical/negative outlook</li>
+                    <li ibmListItem>Self-doubt</li>
+                    <li ibmListItem>Procrastinating and taking longer to get things done</li>
+                    <li ibmListItem>Feeling overwhelmed</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <button ibmButton ibmCol type="button" (click)="onClickPredict()">Predict</button>
+    <button ibmButton ibmCol type="button" (click)="onHelloClick()">Hello</button>
 </div>
-<hr>
-<ibm-label [helperText]="'Not disabled'">
-    <input ibmText>
-</ibm-label>
-<ibm-label [helperText]="'Disabled'">
-    <input ibmText [disabled]="true">
-</ibm-label>
 <hr>
 <ibm-table-container>
     <ibm-table-header>
         <h3 ibmTableHeaderTitle>A</h3>
     </ibm-table-header>
-    <ibm-table [model]="model" [showSelectionColumn]="false" ></ibm-table>
+    <ibm-table [model]="model" [showSelectionColumn]="false" #table></ibm-table>
+    <ibm-pagination [model]="model" (selectPage)="selectPage($event)" pageInputDisabled="true"></ibm-pagination>
 </ibm-table-container>
-<hr>
+<!-- <hr> -->

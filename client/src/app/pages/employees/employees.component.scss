@@ -1,0 +1,16 @@
+.starter-home {
+	.body-text {
+		margin-top: carbon--mini-units(2);
+		margin-bottom: carbon--mini-units(4);
+	}
+
+	.list {
+		max-width: carbon--mini-units(63);
+		padding-left: carbon--mini-units(6);
+		column-count: 2;
+
+		@media only screen and (max-width: 1055px) {
+			margin-top: carbon--mini-units(2);
+		}
+	}
+}

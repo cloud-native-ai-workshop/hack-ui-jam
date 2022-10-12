@@ -7,28 +7,28 @@ import { Link1Component } from './pages/link1/link1.component';
 import { EmployeesComponent } from './pages/employees/employees.component';
 
 const routes: Routes = [
+	// {
+	// 	path: '',
+	// 	loadChildren: () => import('./starter-home/starter-home.module').then(m => m.StarterHomeModule)
+	// },
+	// {
+	// 	path: 'catalog',
+	// 	component: CatalogComponent
+	// },
+	// {
+	// 	path: 'docs',
+	// 	component: DocsComponent
+	// },
+	// {
+	// 	path: 'support',
+	// 	component: SupportComponent
+	// },
+	// {
+	// 	path: 'link1',
+	// 	component: Link1Component
+	// },
 	{
 		path: '',
-		loadChildren: () => import('./starter-home/starter-home.module').then(m => m.StarterHomeModule)
-	},
-	{
-		path: 'catalog',
-		component: CatalogComponent
-	},
-	{
-		path: 'docs',
-		component: DocsComponent
-	},
-	{
-		path: 'support',
-		component: SupportComponent
-	},
-	{
-		path: 'link1',
-		component: Link1Component
-	},
-	{
-		path: 'employees',
 		component: EmployeesComponent
 	}
 ];
