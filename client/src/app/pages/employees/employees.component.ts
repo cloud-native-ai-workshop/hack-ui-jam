@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { Pagination, PaginationNav, Table, TableHeaderItem, TableItem, TableModel } from "carbon-components-angular";
 import { HelloService } from "../../services/hello.service";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { EmployeeService } from "../../services/employee.service";
 
 @Component({
     selector: 'app-employees',
@@ -11,7 +12,8 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 export class EmployeesComponent implements OnInit {
 
     constructor(
-        private helloService: HelloService
+        private helloService: HelloService,
+        private employeeService: EmployeeService,
     ) { }
 
     // @ViewChild('pagination') pagination: PaginationNav;
@@ -68,7 +70,13 @@ export class EmployeesComponent implements OnInit {
     }
 
     onClickPredict() {
-        window.alert('predict')
+        const user = 'sceb';
+        const password = 'Mg7KYKEikn';
+        const model = 'burnout_predictor_v1';
+        const version = '2022-10-11';
+        this.employeeService.getPredictions(user,password,model,version).subscribe((data) => {
+            console.log(data)
+        })
     }
 
     onSubmit() {
