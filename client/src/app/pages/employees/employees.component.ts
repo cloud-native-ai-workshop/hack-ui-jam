@@ -24,10 +24,10 @@ export class EmployeesComponent implements OnInit {
     public data = [];
 
     ngOnInit() {
-        this.model.pageLength = 10;
-        this.model.header = [new TableHeaderItem({data: 'one'}), new TableHeaderItem({data: 'two'})]
-        this.model.data = this.data.slice(0,10)
-        this.model.totalDataLength = this.data.length
+        // this.model.pageLength = 10;
+        // this.model.header = [new TableHeaderItem({data: 'one'}), new TableHeaderItem({data: 'two'})]
+        // this.model.data = this.data.slice(0,10)
+        // this.model.totalDataLength = this.data.length
     }
 
     onClickPredict() {
@@ -45,25 +45,30 @@ export class EmployeesComponent implements OnInit {
     }
 
     private setTable(userData: any, predictions: any){
-        console.log(userData)
-        console.log(predictions)
         this.data = this.prepareData(userData, predictions);
+        this.sortData()
         this.model.pageLength = 10;
-        this.model.header = [new TableHeaderItem({data: 'EmployeeNumber'}), new TableHeaderItem({data: 'EmployeeName'}), new TableHeaderItem({data: 'Prediction'}), new TableHeaderItem({data: 'Confidence'})]
+        this.model.header = [new TableHeaderItem({data: 'EmployeeNumber'}), new TableHeaderItem({data: 'EmployeeName'}), new TableHeaderItem({data: 'Prediction'}), new TableHeaderItem({data: 'Probability'})]
         this.model.data = this.data.slice(0,10)
         this.model.totalDataLength = this.data.length;
         this.loading = false;
     }
 
+    private sortData() {
+        this.data.sort((e1,e2) => e2[3].data - e1[3].data)
+    }
+
     private prepareData(userData: any, predictions: any) {
         let data = [];
         predictions.forEach((pred, i) => {
-            data.push([
-                new TableItem({data: userData[i]['EmployeeNumber']}),
-                new TableItem({data: userData[i]['EmployeeName']}),
-                new TableItem({data: pred[0]}),
-                new TableItem({data: pred[1][1]})
-            ])
+            if(pred[0]==1){
+                data.push([
+                    new TableItem({data: userData[i]['EmployeeNumber']}),
+                    new TableItem({data: userData[i]['EmployeeName']}),
+                    new TableItem({data: pred[0]}),
+                    new TableItem({data: pred[1][1]})
+                ])
+            }
         })
         return data;
     }
