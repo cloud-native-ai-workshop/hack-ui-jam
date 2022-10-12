@@ -11,6 +11,6 @@ export class EmployeeService {
     ) {}
 
     getPredictions(user: string, password: string, model: string, version: string): Observable<Object> {
-        return this.httpClient.post(`/api/inference/predictions?user=${user}&password=${password}&model=${model}&version=${version}`,null);
+        return this.httpClient.get(`/api/inference/predictions?username=${user}&password=${password}&model=${model}&version=${version}`);
     }
 }

@@ -24,7 +24,8 @@ import {
 	SelectModule,
 	GridModule,
 	PaginationModule,
-	ListModule
+	ListModule,
+	LoadingModule
  } from 'carbon-components-angular';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -54,6 +55,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 		GridModule,
 		PaginationModule,
 		ListModule,
+		LoadingModule,
 	],
 	bootstrap: [AppComponent]
 })

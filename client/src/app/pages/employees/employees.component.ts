@@ -16,71 +16,56 @@ export class EmployeesComponent implements OnInit {
         private employeeService: EmployeeService,
     ) { }
 
-    // @ViewChild('pagination') pagination: PaginationNav;
-    public form: FormGroup;
-
-    public pageOptions: number[] = [10]
-
     public model = new TableModel();
 
-    public data = [
-        [new TableItem({data: "1"}), new TableItem({data: "qwer"})],
-        [new TableItem({data: "2"}), new TableItem({data: "zwer"})],
-        [new TableItem({data: "3"}), new TableItem({data: "swer"})],
-        [new TableItem({data: "4"}), new TableItem({data: "twer"})],
-        [new TableItem({data: "5"}), new TableItem({data: "qwer"})],
-        [new TableItem({data: "6"}), new TableItem({data: "zwer"})],
-        [new TableItem({data: "7"}), new TableItem({data: "swer"})],
-        [new TableItem({data: "8"}), new TableItem({data: "twer"})],
-        [new TableItem({data: "9"}), new TableItem({data: "qwer"})],
-        [new TableItem({data: "10"}), new TableItem({data: "zwer"})],
-        [new TableItem({data: "11"}), new TableItem({data: "swer"})],
-        [new TableItem({data: "12"}), new TableItem({data: "twer"})],
-        [new TableItem({data: "13"}), new TableItem({data: "qwer"})],
-        [new TableItem({data: "14"}), new TableItem({data: "zwer"})],
-        [new TableItem({data: "15"}), new TableItem({data: "swer"})],
-        [new TableItem({data: "16"}), new TableItem({data: "twer"})],
-        [new TableItem({data: "17"}), new TableItem({data: "qwer"})],
-        [new TableItem({data: "18"}), new TableItem({data: "zwer"})],
-        [new TableItem({data: "19"}), new TableItem({data: "swer"})],
-        [new TableItem({data: "20"}), new TableItem({data: "twer"})],
-        [new TableItem({data: "21"}), new TableItem({data: "qwer"})],
-        [new TableItem({data: "22"}), new TableItem({data: "zwer"})],
-        [new TableItem({data: "23"}), new TableItem({data: "swer"})],
-        [new TableItem({data: "24"}), new TableItem({data: "twer"})],
-    ];
+    public predicted: boolean = false;
+    public loading: boolean = false;
+
+    public data = [];
 
     ngOnInit() {
-        this.pageOptions = [10]
-        this.form = new FormGroup({
-            nEmployees: new FormControl(null,[Validators.required])
-        })
         this.model.pageLength = 10;
         this.model.header = [new TableHeaderItem({data: 'one'}), new TableHeaderItem({data: 'two'})]
         this.model.data = this.data.slice(0,10)
         this.model.totalDataLength = this.data.length
     }
 
-    onHelloClick() {
-        this.helloService.getHello().subscribe((m: {message:string}) => {
-            console.log(m.message)
-            // this.data = m.message
-        })
-        // console.log('onHelloClick()')
-    }
-
     onClickPredict() {
+        this.predicted = true;
+        this.loading = true;
         const user = 'sceb';
         const password = 'Mg7KYKEikn';
         const model = 'burnout_predictor_v1';
         const version = '2022-10-11';
         this.employeeService.getPredictions(user,password,model,version).subscribe((data) => {
-            console.log(data)
+            const userData = data['employeesData'];
+            const predictions = data['predictions']['predictions'][0]['values'];
+            this.setTable(userData, predictions)
         })
     }
 
-    onSubmit() {
-        console.log(this.form.getRawValue())
+    private setTable(userData: any, predictions: any){
+        console.log(userData)
+        console.log(predictions)
+        this.data = this.prepareData(userData, predictions);
+        this.model.pageLength = 10;
+        this.model.header = [new TableHeaderItem({data: 'EmployeeNumber'}), new TableHeaderItem({data: 'EmployeeName'}), new TableHeaderItem({data: 'Prediction'}), new TableHeaderItem({data: 'Confidence'})]
+        this.model.data = this.data.slice(0,10)
+        this.model.totalDataLength = this.data.length;
+        this.loading = false;
+    }
+
+    private prepareData(userData: any, predictions: any) {
+        let data = [];
+        predictions.forEach((pred, i) => {
+            data.push([
+                new TableItem({data: userData[i]['EmployeeNumber']}),
+                new TableItem({data: userData[i]['EmployeeName']}),
+                new TableItem({data: pred[0]}),
+                new TableItem({data: pred[1][1]})
+            ])
+        })
+        return data;
     }
 
     selectPage(page) {

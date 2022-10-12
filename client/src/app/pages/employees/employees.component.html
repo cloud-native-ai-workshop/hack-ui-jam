@@ -26,14 +26,17 @@
         </div>
     </div>
     <button ibmButton ibmCol type="button" (click)="onClickPredict()">Predict</button>
-    <button ibmButton ibmCol type="button" (click)="onHelloClick()">Hello</button>
+    <!-- <button ibmButton ibmCol type="button" (click)="onHelloClick()">Hello</button> -->
 </div>
 <hr>
-<ibm-table-container>
-    <ibm-table-header>
-        <h3 ibmTableHeaderTitle>A</h3>
-    </ibm-table-header>
-    <ibm-table [model]="model" [showSelectionColumn]="false" #table></ibm-table>
-    <ibm-pagination [model]="model" (selectPage)="selectPage($event)" pageInputDisabled="true"></ibm-pagination>
-</ibm-table-container>
+<div *ngIf="predicted">
+    <ibm-loading *ngIf="loading"></ibm-loading>
+    <ibm-table-container *ngIf="!loading">
+        <ibm-table-header>
+            <h3 ibmTableHeaderTitle>Employees Burnout Predictions</h3>
+        </ibm-table-header>
+        <ibm-table [model]="model" [showSelectionColumn]="false" [sortable]="false" #table></ibm-table>
+        <ibm-pagination [model]="model" (selectPage)="selectPage($event)" pageInputDisabled="true"></ibm-pagination>
+    </ibm-table-container>
+</div>
 <!-- <hr> -->
